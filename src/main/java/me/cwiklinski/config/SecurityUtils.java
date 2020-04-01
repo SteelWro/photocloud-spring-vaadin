@@ -24,8 +24,9 @@ public final class SecurityUtils {
 
     static boolean isFrameworkInternalRequest(HttpServletRequest request) {
         final String parameterValue = request.getParameter(ApplicationConstants.REQUEST_TYPE_PARAMETER);
-        return parameterValue != null
+        boolean isInternal =  parameterValue != null
                 && Stream.of(ServletHelper.RequestType.values()).anyMatch(r -> r.getIdentifier().equals(parameterValue));
+        return isInternal;
     }
 
     static boolean isUserLoggedIn(Authentication authentication) {

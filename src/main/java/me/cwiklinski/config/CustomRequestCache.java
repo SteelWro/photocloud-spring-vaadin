@@ -40,11 +40,7 @@ public class CustomRequestCache extends HttpSessionRequestCache {
         if(savedRequest instanceof DefaultSavedRequest) {
             final String requestURI = ((DefaultSavedRequest) savedRequest).getRequestURI();
             // check for valid URI and prevent redirecting to the login view
-            if (requestURI != null
-                    && !requestURI.isEmpty()
-                    && !requestURI.contains(LoginView.ROUTE)
-                    && !requestURI.contains(MainView.ROUTE)
-                    && !requestURI.contains(RegistrationView.ROUTE)) {
+            if (requestURI != null && !requestURI.isEmpty() && !requestURI.contains(LoginView.ROUTE)) {
                 return requestURI.startsWith("/") ? requestURI.substring(1) : requestURI;
             }
         }
@@ -72,7 +68,7 @@ public class CustomRequestCache extends HttpSessionRequestCache {
         } else if (isAdmin) {
             return AdminView.ROUTE;
         } else {
-            return MainView.ROUTE;
+            return LoginView.ROUTE;
         }
     }
 
